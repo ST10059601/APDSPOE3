@@ -16,7 +16,7 @@ jobs:
           name: Start server in background
           command: |
             cd Backend
-            npm start &
+            npm run dev &
       - attach_workspace:
           at: ~/workspace
       - run:
@@ -53,7 +53,7 @@ jobs:
           name: Start backend server
           command: |
             cd Backend
-            npm start &
+            npm run dev &
       - run:
           name: Wait for backend server
           command: sleep 10
