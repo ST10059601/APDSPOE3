@@ -61,7 +61,7 @@ jobs:
           name: Run Newman tests
           command: |
             cd Backend
-            npm run test-api
+            npm run newmantestingscript  &
       - attach_workspace:
           at: ~/workspace
 
