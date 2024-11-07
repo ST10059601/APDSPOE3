@@ -25,7 +25,7 @@ function Home() {
       if (!token) return;
 
       try {
-        const response = await fetch('http://localhost:3000/notifications', {
+        const response = await fetch('https://localhost:3000/notifications', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
