@@ -16,7 +16,7 @@ jobs:
           name: Start server in background
           command: |
             cd Backend
-            npm start &
+            nohup npm start > output.log 2>&1 &
       - attach_workspace:
           at: ~/workspace
       - run:
@@ -53,10 +53,10 @@ jobs:
           name: Start backend server
           command: |
             cd Backend
-            npm start &
+            nohup npm start > output.log 2>&1 &
       - run:
           name: Wait for backend server
-          command: sleep 10
+          command: sleep 15
       - run:
           name: Run Newman tests
           command: |
