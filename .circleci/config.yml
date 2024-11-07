@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: Navigate to Backend Folder
-          command: cd backend
+          command: cd Backend
       - run:
           name: Install Dependencies
           command: npm install
