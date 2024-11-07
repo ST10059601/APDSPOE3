@@ -10,7 +10,7 @@ function Notification() {
 
   const fetchNotifications = async () => {
     const token = localStorage.getItem('token');
-    const response = await fetch('http://localhost:3000/payment/notifications', {
+    const response = await fetch('https://localhost:3000/payment/notifications', {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     const data = await response.json();
@@ -25,7 +25,7 @@ function Notification() {
   const markNotificationsAsRead = async () => {
     const token = localStorage.getItem('token');
     try {
-      await fetch('http://localhost:3000/payment/notifications/mark-read', {
+      await fetch('https://localhost:3000/payment/notifications/mark-read', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`
