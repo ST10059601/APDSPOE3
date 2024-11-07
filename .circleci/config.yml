@@ -39,31 +39,35 @@ jobs:
             -Dsonar.objc.file.suffixes=-
 
   newmantest:
-    docker:
-      - image: cimg/node:18.20.2
-    resource_class: small
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            cd Backend
-            npm install
-      - run:
-          name: Start backend server
-          command: |
-            cd Backend
-            npm run dev &
-      - run:
-          name: Wait for backend server
-          command: sleep 10
-      - run:
-          name: Run Newman tests
-          command: |
-            cd Backend
-            npm run newmantestingscript 
-      - attach_workspace:
-          at: ~/workspace
+  docker:
+    - image: cimg/node:18.20.2
+  resource_class: small
+  steps:
+    - checkout
+    - run:
+        name: Install dependencies
+        command: |
+          cd Backend
+          npm install
+    - run:
+        name: Install Newman globally
+        command: npm install -g newman
+    - run:
+        name: Start backend server
+        command: |
+          cd Backend
+          npm run dev &
+    - run:
+        name: Wait for backend server
+        command: sleep 10
+    - run:
+        name: Run Newman tests
+        command: |
+          cd Backend
+          npm run newmantestingscript
+    - attach_workspace:
+        at: ~/workspace
+
 
 workflows:
   version: 2
