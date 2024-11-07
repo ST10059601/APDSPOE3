@@ -50,9 +50,6 @@ jobs:
             cd Backend
             npm install
       - run:
-        name: Install Newman globally
-        command: npm install -g newman
-      - run:
           name: Start backend server
           command: |
             cd Backend
