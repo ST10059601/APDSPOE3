@@ -61,10 +61,7 @@ jobs:
           name: Run Newman tests
           command: |
             cd Backend
-            npx newman run "API Testing.postman_collection.json" \
-              -e "Local Testing.postman_environment.json" \
-              --reporters cli,junit \
-              --reporter-junit-export newman-report.xml
+            npm run newmantestingscript 
       - attach_workspace:
           at: ~/workspace
 
@@ -73,11 +70,6 @@ workflows:
   sonar_workflow:
     jobs:
       - sonarqube
-      - run:
-          name: Run Newman tests
-          command: |
-            cd BACKEND
-            npm run newmantestingscript  &
       - newmantest:
           requires:
             - sonarqube
