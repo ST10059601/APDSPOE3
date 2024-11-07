@@ -52,4 +52,3 @@ workflows:
   test-and-build:
     jobs:
       - test
-      - sonarqube
