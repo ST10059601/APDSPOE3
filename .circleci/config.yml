@@ -16,7 +16,7 @@ jobs:
           name: Start server in background
           command: |
             cd Backend
-            npm run &
+            npm start &
       - attach_workspace:
           at: ~/workspace
       - run:
@@ -50,14 +50,21 @@ jobs:
             cd Backend
             npm install
       - run:
+          name: Start backend server
+          command: |
+            cd Backend
+            npm start &
+      - run:
+          name: Wait for backend server
+          command: sleep 10
+      - run:
           name: Run Newman tests
           command: |
             cd Backend
             npx newman run "API Testing.postman_collection.json" \
-            -e "Local Testing.postman_environment.json" \
-            --reporters cli,junit \
-            --reporter-junit-export newman-report.xml
-
+              -e "Local Testing.postman_environment.json" \
+              --reporters cli,junit \
+              --reporter-junit-export newman-report.xml
       - attach_workspace:
           at: ~/workspace
 
