@@ -8,12 +8,46 @@
 	"item": [
 		{
 			"name": "Register Customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 for successful signup\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains success message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"User registered successfully\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Failure case: Missing fields\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"testuser\",\r\n  \"password\": \"testpassword\"\r\n}\r\n",
+					"raw": "{\r\n  \"name\": \"testUser\",\r\n  \"password\": \"Test1!\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,8 +55,8 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/user/register",
-					"protocol": "http",
+					"raw": "https://localhost:3000/user/register",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -37,12 +71,38 @@
 		},
 		{
 			"name": "Login Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 for successful login\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains a token\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.token).to.exist;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"authToken\", pm.response.json().token);\r",
+							"\r",
+							"pm.test(\"Failure case: Incorrect credentials\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"testuser\",\r\n  \"password\": \"testpassword\"\r\n}\r\n",
+					"raw": "{\r\n  \"name\": \"testUser\",\r\n  \"password\": \"Test1!\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -50,8 +110,8 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/user/login",
-					"protocol": "http",
+					"raw": "https://localhost:3000/user/login",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -79,8 +139,8 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/user/login",
-					"protocol": "http",
+					"raw": "https://localhost:3000/user/login",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -125,8 +185,8 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/payment/request",
-					"protocol": "http",
+					"raw": "https://localhost:3000/payment/request",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
@@ -141,6 +201,30 @@
 		},
 		{
 			"name": "All payments to verify",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 for successful fetch\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains an array of pending payments\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Failure case: Unauthorized access\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -167,8 +251,8 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/employee/payments",
-					"protocol": "http",
+					"raw": "https://localhost:3000/employee/payments",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
