@@ -9,7 +9,7 @@ function EmployeeDashboard() {
   useEffect(() => {
     const fetchPayments = async () => {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/employee/payments', {
+      const response = await fetch('https://localhost:3000/employee/payments', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -30,7 +30,7 @@ function EmployeeDashboard() {
   const handleVerify = async (paymentId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:3000/employee/payments/verify/${paymentId}`, {
+      const response = await fetch(`https://localhost:3000/employee/payments/verify/${paymentId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -52,7 +52,7 @@ function EmployeeDashboard() {
   const handleReject = async (paymentId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:3000/employee/payments/reject/${paymentId}`, {
+      const response = await fetch(`https://localhost:3000/employee/payments/reject/${paymentId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
