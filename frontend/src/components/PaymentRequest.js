@@ -25,7 +25,7 @@ function PaymentRequest() {
       swiftCode
     };
     try {
-      const response = await fetch('http://localhost:3000/payment/request', {
+      const response = await fetch('https://localhost:3000/payment/request', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
