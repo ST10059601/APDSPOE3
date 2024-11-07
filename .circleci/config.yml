@@ -53,10 +53,11 @@ jobs:
           name: Run Newman tests
           command: |
             cd Backend
-            npx newman run ./API_Testing.postman_collection.json \
-              -e ./Local_Testing.postman_environment.json \
-              --reporters cli,junit \
-              --reporter-junit-export newman-report.xml
+            npx newman run "API Testing.postman_collection.json" \
+            -e "Local Testing.postman_environment.json" \
+            --reporters cli,junit \
+            --reporter-junit-export newman-report.xml
+
       - attach_workspace:
           at: ~/workspace
 
