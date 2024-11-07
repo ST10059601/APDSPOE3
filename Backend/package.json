@@ -5,7 +5,8 @@
   "main": "server.mjs",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "newmantestingscript": "newman run ../API Testing.postman_collection.json -e ../Local Testing.postman_environment.json --reporters cli,junit"
   },
   "keywords": [],
   "author": "",
