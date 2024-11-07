@@ -1,4 +1,4 @@
-import http from "http";  // Use https instead of http
+import https from "https";  // Use https instead of http
 import fs from "fs";
 import users from "./Routes/user.mjs";
 import payments from "./Routes/payment.mjs";  // Payment request routes
@@ -46,7 +46,7 @@ app.use(helmet());
 
 // Simplified CORS settings
 app.use(cors({
-  origin: "http://localhost:3001",  
+  origin: "https://localhost:3001",  
   methods: ["GET", "POST","PUT"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
@@ -78,7 +78,7 @@ app.use("/payment", payments);  // Payment request routes
 app.use("/employee", checkEmployerRole, employees); // Employer-specific routes with role check
 
 // HTTPS Server Setup
-let server = http.createServer(options, app);  
+let server = https.createServer(options, app);  
 server.listen(PORT, () => {
-    console.log(`Server running securely on http://localhost:${PORT}`);
+    console.log(`Server running securely on https://localhost:${PORT}`);
 });
