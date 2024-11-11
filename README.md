@@ -165,6 +165,11 @@ This is a full-stack web application for submitting **international payment requ
   npm run newmantestingscript
   ```
 
+## Contributors
+- **Vidhanth BHEEMSAN** (ST10146835)
+- **Surav Neshan Singh** (ST10183150)
+- **Tristan Alvin Gulzar** (ST10059601)
+
 ![image](https://github.com/user-attachments/assets/7a770474-2c80-4a61-933f-ef0cb8c4d622)
 
 CircleCI passing all tests.
